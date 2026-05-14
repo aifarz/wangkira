@@ -1497,6 +1497,7 @@ curl -X PATCH http://localhost:5000/api/preferences \
 - **B-015** Bill negotiation reminders
 - **B-016** Additional dashboard variants (v2 — e.g. "tile-grid", "card-stack")
 - **B-017** Custom variant builder (drag-and-drop widget composer)
+- **B-018** `add_txn_variant` preference — rich-sheet alternative to the canonical compact-numpad modal. Adds `add_txn_variant ENUM(compact, rich) DEFAULT 'compact'` to `UserPreferences`, ships `AddTxnRich.tsx` (560px sheet with inline CC installment preview, from `docs/wireframes/screens-addtxn.jsx` `AddTxnB`), adds the 2-thumb picker to T-078, and updates T-027's modal to switch variants. Deferred from v1.1 spec to keep the §17 variant-proliferation risk contained; revisit at v2 planning.
 
 ---
 

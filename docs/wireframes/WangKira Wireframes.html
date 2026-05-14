@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>WangKira — Wireframes</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<style>
+  html, body { margin: 0; padding: 0; background: #f0eee9; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif; }
+  body { min-height: 100vh; }
+  /* Fallback while babel compiles */
+  #root:empty::before {
+    content: "Loading wireframes…";
+    display: block;
+    padding: 40px; color: #8e8e93; font-size: 13px;
+  }
+</style>
+
+<!-- React + Babel -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<!-- Starters & primitives -->
+<script type="text/babel" src="macos-window.jsx"></script>
+<script type="text/babel" src="ios-frame.jsx"></script>
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="wireframe-base.jsx"></script>
+
+<!-- Screen variations -->
+<script type="text/babel" src="screens-dashboard.jsx"></script>
+<script type="text/babel" src="screens-accounts.jsx"></script>
+<script type="text/babel" src="screens-addtxn.jsx"></script>
+<script type="text/babel" src="screens-budget.jsx"></script>
+<script type="text/babel" src="screens-installments.jsx"></script>
+<script type="text/babel" src="screens-misc.jsx"></script>
+<script type="text/babel" src="screens-ios.jsx"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react">
+const { useState, useEffect } = React;
+
+// Wrap a screen in a MacWindow with our sidebar
+function MacScreen({ title, active, children, width = 1240, height = 820 }) {
+  return (
+    <MacWindow width={width} height={height} title={title} sidebar={<WangkiraSidebar active={active} />}>
+      {children}
+    </MacWindow>
+  );
+}
+
+function App() {
+  return (
+    <DesignCanvas
+      title="WangKira"
+      subtitle="Personal finance tracker · wireframe exploration · Apple-flavored lo-fi"
+      defaultZoom={0.55}
+    >
+      {/* ====================================================== */}
+      <DCSection id="dashboard" title="Dashboard" subtitle="Three takes — debt-forward, calm/modular, dense/pro">
+        <DCArtboard id="dash-a" label="A · Debt-forward" width={1240} height={820}>
+          <MacScreen title="Dashboard" active="Dashboard"><DashboardA /></MacScreen>
+        </DCArtboard>
+        <DCArtboard id="dash-b" label="B · Calm / Wallet" width={1240} height={820}>
+          <MacScreen title="Overview" active="Dashboard"><DashboardB /></MacScreen>
+        </DCArtboard>
+        <DCArtboard id="dash-c" label="C · Dense / Pro" width={1240} height={820}>
+          <MacScreen title="Today" active="Dashboard"><DashboardC /></MacScreen>
+        </DCArtboard>
+      </DCSection>
+
+      {/* ====================================================== */}
+      <DCSection id="accounts" title="Accounts" subtitle="Two takes — Apple Wallet card grid vs. dense list view">
+        <DCArtboard id="acc-a" label="A · Card grid" width={1240} height={920}>
+          <MacScreen title="Accounts" active="Accounts" height={920}><AccountsA /></MacScreen>
+        </DCArtboard>
+        <DCArtboard id="acc-b" label="B · Dense rows" width={1240} height={920}>
+          <MacScreen title="Accounts" active="Accounts" height={920}><AccountsB /></MacScreen>
+        </DCArtboard>
+      </DCSection>
+
+      {/* ====================================================== */}
+      <DCSection id="addtxn" title="Add transaction" subtitle="Two takes — compact Wallet-style numpad vs. rich sheet with CC installment preview">
+        <DCArtboard id="txn-a" label="A · Compact numpad" width={1240} height={820}>
+          <MacScreen title="Transactions" active="Transactions"><AddTxnA /></MacScreen>
+        </DCArtboard>
+        <DCArtboard id="txn-b" label="B · Rich sheet" width={1240} height={820}>
+          <MacScreen title="Transactions" active="Transactions"><AddTxnB /></MacScreen>
+        </DCArtboard>
+      </DCSection>
+
+      {/* ====================================================== */}
+      <DCSection id="budget" title="Budget" subtitle="Two takes — table with rollover math vs. donut + per-category cards">
+        <DCArtboard id="bud-a" label="A · Table + bars" width={1240} height={820}>
+          <MacScreen title="Budget" active="Budget"><BudgetA /></MacScreen>
+        </DCArtboard>
+        <DCArtboard id="bud-b" label="B · Donut + grid" width={1240} height={820}>
+          <MacScreen title="Budget" active="Budget"><BudgetB /></MacScreen>
+        </DCArtboard>
+      </DCSection>
+
+      {/* ====================================================== */}
+      <DCSection id="installments" title="Installments" subtitle="Master/detail with amortisation schedule and convert-purchase entry point">
+        <DCArtboard id="inst-a" label="Master · detail · schedule" width={1240} height={900}>
+          <MacScreen title="Installments" active="Installments" height={900}><Installments /></MacScreen>
+        </DCArtboard>
+      </DCSection>
+
+      {/* ====================================================== */}
+      <DCSection id="subs-ious" title="Subscriptions · IOUs · Payslip" subtitle="Supporting screens — one take each">
+        <DCArtboard id="subs" label="Subscriptions" width={1240} height={820}>
+          <MacScreen title="Subscriptions" active="Subscriptions"><Subscriptions /></MacScreen>
+        </DCArtboard>
+        <DCArtboard id="ious" label="IOUs" width={1240} height={820}>
+          <MacScreen title="IOUs" active="IOUs"><IOUs /></MacScreen>
+        </DCArtboard>
+        <DCArtboard id="payslip" label="Payslip draft" width={1240} height={900}>
+          <MacScreen title="Salary" active="Salary" height={900}><Payslip /></MacScreen>
+        </DCArtboard>
+      </DCSection>
+
+      {/* ====================================================== */}
+      <DCSection id="mobile" title="Mobile peek — phase 8" subtitle="Quick-add capture flow on iPhone (not part of MVP — for direction-setting)">
+        <DCArtboard id="ios" label="Today + Quick add" width={820} height={800}>
+          <IOSQuickAdd />
+        </DCArtboard>
+      </DCSection>
+    </DesignCanvas>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
