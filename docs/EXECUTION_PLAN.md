@@ -37,7 +37,7 @@ file scope, and acceptance criteria.
 **Duration**: week 1.
 
 ### T-001 — Repo scaffold and conventions
-**Effort** 1h · **Deps** — · **Status** TODO
+**Effort** 1h · **Deps** — · **Status** DONE
 
 **Files**: `README.md`, `.gitignore`, `.editorconfig`, root `package.json`, `LICENSE`
 
