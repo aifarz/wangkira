@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+dist/
+.vite/
+*.log
+
+# Environment
+.env
+.env.local
+*.local
+
+# SQLite
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Backups (kept locally, not committed)
+/backups/*
+!/backups/.gitkeep
+
+# Real seed data is private
+/backend/seed_data/*
+!/backend/seed_data/.gitkeep
+!/backend/seed_data/example.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Frontend build outputs
+/frontend/dist/
+/frontend/build/
