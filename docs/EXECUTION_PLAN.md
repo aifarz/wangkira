@@ -55,7 +55,7 @@ file scope, and acceptance criteria.
 ---
 
 ### T-002 — Backend project scaffold
-**Effort** 2h · **Deps** T-001 · **Status** TODO
+**Effort** 2h · **Deps** T-001 · **Status** WIP
 
 **Files**: `backend/requirements.txt`, `backend/run.py`, `backend/app/__init__.py`, `backend/app/config.py`, `backend/.env.example`
 
